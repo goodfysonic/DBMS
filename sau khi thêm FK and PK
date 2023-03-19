@@ -1,0 +1,56 @@
+DROP TABLE IF EXISTS Course
+CREATE TABLE Course
+(Course_ID Varchar Primary key,
+Session_ID Varchar,
+Student_ID Numeric,
+Teacher_ID Numeric)
+
+CREATE TABLE Student
+(Student_ID Numeric Primary key,
+Student_Name Varchar ,
+Dayofbirth Date,
+Email Varchar,
+PhoneNumber Numeric,
+Gender Varchar,
+Student_IDNum Numeric)
+ALTER TABLE Course
+ADD CONSTRAINT FK_Course_Student
+FOREIGN KEY (Student_ID) REFERENCES Student(Student_ID);
+
+CREATE TABLE Teacher
+(Teacher_ID Numeric Primary key,
+Teacher_Name Varchar,
+Dayofbirth Date,
+Email Varchar,
+PhoneNumber Numeric,
+Gender Varchar)
+ALTER TABLE Course
+ADD CONSTRAINT FK_Course_Teacher
+FOREIGN KEY (Teacher_ID) REFERENCES Teacher(Teacher_ID);
+
+CREATE TABLE Sessionss
+(Sessionss_ID Varchar Primary key,
+Sessionss_Name Varchar ,
+Semester DATE,
+Scholastic DATE,
+Numberofcredits Numeric)
+ALTER TABLE Course
+ADD CONSTRAINT FK_Course_Sessionss
+FOREIGN KEY (Session_ID) REFERENCES Sessionss(Sessionss_ID);
+
+CREATE TABLE SAccount
+(Student_ID Numeric Primary key,
+Username Numeric,
+Passwords Varchar)
+ALTER TABLE SAccount
+ADD CONSTRAINT FK_SAccount_Student
+FOREIGN KEY (Student_ID) REFERENCES Student(Student_ID);
+
+
+CREATE TABLE TAccount
+(Teacher_ID Numeric Primary key,
+Username Numeric,
+Passwords Varchar)
+ALTER TABLE TAccount
+ADD CONSTRAINT FK_TAccount_Teacher
+FOREIGN KEY (Teacher_ID) REFERENCES Teacher(Teacher_ID);
